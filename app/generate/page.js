@@ -181,8 +181,17 @@ export default function Generate(){
                            </Grid>
                         ))}
                     </Grid>
+                    <Typography 
+                    variant="h6" 
+                    textAlign={'center'}
+                    sx={{marginTop: 3}}
+                    >
+                            To save you collection, please make sure you are signed in.
+                            Otherwise it will not save.
+                    </Typography>
                     <Box sx={{
-                        mt: 4,
+                        mt: 2,
+                        mb: 4,
                         display: 'flex',
                         justifyContent: 'center'
                     }}>

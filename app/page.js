@@ -45,9 +45,17 @@ export default function Home() {
         <Button 
         variant="contained"
         color= 'primary' 
-        sx={{marginTop: 2}}
+        sx={{marginTop: 2, marginRight: 2}}
         href="/generate">
           Get Started
+        </Button>
+
+        <Button 
+        variant="contained"
+        color= 'primary' 
+        sx={{marginTop: 2}}
+        href="/flashcards">
+          Saved Collections
         </Button>
       </Box>
       <Box sx={{my: 6, textAlign: 'center'}}>
