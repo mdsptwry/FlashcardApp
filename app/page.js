@@ -8,14 +8,14 @@ export default function Home() {
   return (
     <Container maxWidth="lg">
       <Head>
-        <title>Flashcard AI</title>
+        <title>LingoDeck</title>
         <meta name = "description" content="Create flashcards from your text" />
       </Head>
 
       <AppBar position="static">
         <Toolbar>
           <Typography variant="h6" style={{flexGrow: 1}}>
-            Flashcard AI
+            LingoDeck
           </Typography>
           <SignedOut>
             <Button color = "inherit" href="/sign-in"> 
@@ -37,10 +37,10 @@ export default function Home() {
           marginY: 4,
         }}
       >
-        <Typography variant="h2">Welcome to Flashcard AI</Typography>
-        <Typography variant="h5">
+        <Typography variant="h3">Welcome to LingoDeck</Typography>
+        <Typography variant="h6">
           {' '}
-          The easiest way to make flaschards from scratch
+          Learn any language you want with our AI generated flashcards
         </Typography>
         <Button 
         variant="contained"
@@ -116,7 +116,7 @@ export default function Home() {
               </Typography>
               <Typography>
                 {' '}
-                Access to basic flashcard features and limited storage.
+                Access to 5 languages with basic features, and limited storage.
               </Typography>
               <Button variant="contained" color="primary" sx={{mt: 2}}>
                 Choose Basic
@@ -140,7 +140,7 @@ export default function Home() {
               </Typography>
               <Typography>
                 {' '}
-                Access to unlimited flashcards and storage, with priority support.
+                Access to 20 languages and a larger amount of storage.
               </Typography>
               <Button variant="contained" color="primary" sx={{mt: 2}}>
                 Choose Pro
@@ -164,10 +164,10 @@ export default function Home() {
               </Typography>
               <Typography>
                 {' '}
-                Access to unlimited flashcards and storage, with priority support.
+                Access to 50+ languages, with unlimited flashcards and storage.
               </Typography>
               <Button variant="contained" color="primary" sx={{mt: 2}}>
-                Choose Pro
+                Choose Premium
               </Button>
             </Box>
           </Grid>
