@@ -40,7 +40,7 @@ export default function Home() {
         <Typography variant="h2">Welcome to Flashcard AI</Typography>
         <Typography variant="h5">
           {' '}
-          The easiest way to make flaschards from scratch
+          The easiest way to make flashcards from scratch
         </Typography>
         <Button 
         variant="contained"
@@ -167,7 +167,7 @@ export default function Home() {
                 Access to unlimited flashcards and storage, with priority support.
               </Typography>
               <Button variant="contained" color="primary" sx={{mt: 2}}>
-                Choose Pro
+                Choose Premium
               </Button>
             </Box>
           </Grid>
