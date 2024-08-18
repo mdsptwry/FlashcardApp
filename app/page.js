@@ -116,7 +116,7 @@ export default function Home() {
               </Typography>
               <Typography>
                 {' '}
-                Access to basic flashcard features and limited storage.
+                Access to basic flashcards features and limited storage.
               </Typography>
               <Button variant="contained" color="primary" sx={{mt: 2}}>
                 Choose Basic
@@ -140,7 +140,7 @@ export default function Home() {
               </Typography>
               <Typography>
                 {' '}
-                Access to unlimited flashcards and storage, with priority support.
+                Access to flashcards of up to 20 languages and unlimited storage, with priority support.
               </Typography>
               <Button variant="contained" color="primary" sx={{mt: 2}}>
                 Choose Pro
