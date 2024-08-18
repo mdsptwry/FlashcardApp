@@ -45,7 +45,8 @@ export default function Home() {
         <Button 
         variant="contained"
         color= 'primary' 
-        sx={{marginTop: 2}}>
+        sx={{marginTop: 2}}
+        href="/generate">
           Get Started
         </Button>
       </Box>
