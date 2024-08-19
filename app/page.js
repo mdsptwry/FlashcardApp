@@ -160,7 +160,7 @@ export default function Home() {
                 Premium
               </Typography>
               <Typography variant="h6" gutterBottom>
-                $4.99 / month
+                $4.99 / year
               </Typography>
               <Typography>
                 {' '}
