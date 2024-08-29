@@ -16,7 +16,7 @@ and their english transation and the transliteration.
 Remember, the goal is to facilitate effective learning and 
 retention of information through these flashcards. 
 
-So only generate 12 flashcards, and make sure that 
+So only generate 20 flashcards, and make sure that 
 for each flashcard you always provide the transilteration.
 
 Return in the following JSON format:

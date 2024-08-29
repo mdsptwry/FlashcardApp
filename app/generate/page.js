@@ -1,15 +1,17 @@
 'use client'
-
+import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs"
 import { useUser } from "@clerk/nextjs"
 import { Box, Button, Card, CardActionArea, 
     CardContent, Container, Dialog, DialogActions, 
     DialogContent, DialogContentText, DialogTitle, 
-    Grid, Paper, TextField, Typography } 
+    Grid, Paper, TextField, Typography, Toolbar, AppBar,
+    IconButton, Menu, MenuItem } 
 from "@mui/material"
 import { collection, getDoc, doc, writeBatch } from "firebase/firestore"
 import { useState } from "react"
 import { db } from "@/firebase"
 import { useRouter } from "next/navigation"
+import { Person } from "@mui/icons-material";
 
 export default function Generate(){
     const {isLoaded, isSignedIn, user} = useUser()
@@ -19,6 +21,15 @@ export default function Generate(){
     const [name, setName] = useState('')
     const [open, setOpen] = useState(false)
     const router = useRouter()
+
+    const [anchorEl, setAnchorEl] = useState(null);
+  
+    const handleMenuOpen = (event) => {
+    setAnchorEl(event.currentTarget)
+  }
+    const handleMenuClose = () => {
+    setAnchorEl(null);
+  }
 
     const handleSubmit = async () => {
         fetch('api/generate', {
@@ -79,6 +90,56 @@ export default function Generate(){
     }
 
     return(
+        <Container maxWidth='100vw' disableGutters>
+        <AppBar position="static" >
+        <Toolbar sx={{backgroundColor: '#673ab7', height: 80}}>
+          <Box sx={{flexGrow: 1}}>
+          <Button color="inherit" href="/">
+          <Typography variant="h6" textTransform="none" href="page.js" style={{flexGrow: 1}} sx={{ml: 2}}>
+            LingoDeck
+          </Typography>
+          </Button>
+          </Box>
+
+          <SignedOut>
+            <Box sx={{mx: 2}}>
+            <Button color = "inherit"  href="/generate"> 
+              {' '}
+              Generate </Button>
+            <Button color="inherit" href="/flashcards"> 
+              {' '}
+              Saved </Button>
+            </Box>
+            <IconButton color="inherit" onClick={handleMenuOpen} sx={{mr: 2}}>
+              <Person/>
+            </IconButton>
+            <Menu
+              anchorEl={anchorEl}
+              open={Boolean(anchorEl)}
+              onClose={handleMenuClose}>
+                <MenuItem onClick={handleMenuClose} component="a" href="/sign-in">
+                Sign In
+                </MenuItem>
+                <MenuItem onClick={handleMenuClose} component="a" href="/sign-up">
+                Sign Up
+                </MenuItem>
+            </Menu>  
+          </SignedOut>
+          
+          
+          <SignedIn>
+            <Box sx={{mx: 2}}>
+            <Button color = "inherit" href="/generate"> 
+              {' '}
+              Generate </Button>
+            <Button color="inherit" href="/flashcards"> 
+              {' '}
+              Saved </Button>
+            </Box>
+            <UserButton/>
+          </SignedIn>
+        </Toolbar>
+      </AppBar>
         <Container maxWidth='md'>
             <Box
                 sx={{
@@ -105,7 +166,8 @@ export default function Generate(){
                     />
                     <Button 
                         variant="contained"
-                        color="primary"
+                        sx={{ color:"white",
+                            backgroundColor:"#212121"}}
                         onClick={handleSubmit}
                         fullWidth
                     >   
@@ -185,9 +247,13 @@ export default function Generate(){
                     variant="h6" 
                     textAlign={'center'}
                     sx={{marginTop: 3}}
-                    >
-                            To save you collection, please make sure you are signed in.
-                            Otherwise it will not save.
+                    > 
+                    {isSignedIn ? (
+                            `To save you collection, please make sure you are signed in.
+                            Otherwise it will not save.`
+                     ): (
+                        "You are not Signed in. Please sign in to save your collection."
+                     )}
                     </Typography>
                     <Box sx={{
                         mt: 2,
@@ -198,7 +264,9 @@ export default function Generate(){
                         <Button 
                         variant="contained" 
                         color="secondary"
-                        onClick={handleOpen}>
+                        onClick={isSignedIn ? handleOpen: null}
+                        disabled={!isSignedIn}
+                        >
                         Save Collection
                         </Button>
 
@@ -228,6 +296,7 @@ export default function Generate(){
                     <Button onClick={saveFlashCards}>Save</Button>
                 </DialogActions>
             </Dialog>
+        </Container>
         </Container>
     )
 

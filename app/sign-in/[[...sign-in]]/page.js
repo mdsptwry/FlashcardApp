@@ -4,7 +4,22 @@ import Link from "next/link";
 
 export default function SignUpPage(){
     return (
-        <Container maxWidth='lg'>
+        <Box
+        display={'flex'}
+        flexDirection={'column'}
+        alignItems={'center'}
+        justifyContent={'center'}
+        marginTop={5}
+    >
+        <Box marginBottom={3}>
+        <Typography variant="h4">Sign in to LingoDeck</Typography>
+        </Box>
+        <SignIn />
+        </Box>
+    )
+}
+        
+        {/*<Container maxWidth='lg'>
             <AppBar position="static">
                 <Toolbar>
                     <Typography variant='h6' sx={{
@@ -35,6 +50,4 @@ export default function SignUpPage(){
                 <SignIn />
 
             </Box>
-        </Container>
-    )
-}
+        </Container>*/}
