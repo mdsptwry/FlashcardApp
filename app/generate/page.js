@@ -5,7 +5,7 @@ import { Box, Button, Card, CardActionArea,
     CardContent, Container, Dialog, DialogActions, 
     DialogContent, DialogContentText, DialogTitle, 
     Grid, Paper, TextField, Typography, Toolbar, AppBar,
-    IconButton, Menu, MenuItem } 
+    IconButton, Menu, MenuItem, CircularProgress } 
 from "@mui/material"
 import { collection, getDoc, doc, writeBatch } from "firebase/firestore"
 import { useState } from "react"
@@ -21,6 +21,7 @@ export default function Generate(){
     const [name, setName] = useState('')
     const [open, setOpen] = useState(false)
     const router = useRouter()
+    const [loading, setLoading] = useState(false)
 
     const [anchorEl, setAnchorEl] = useState(null);
   
@@ -31,14 +32,30 @@ export default function Generate(){
     setAnchorEl(null);
   }
 
+    // const handleSubmit = async () => {
+    //     fetch('api/generate', {
+    //         method: 'POST',
+    //         body: text,
+    //     })
+    //     .then((res) => res.json())
+    //     .then((data) => setFlashcards(data))
+    // }
     const handleSubmit = async () => {
-        fetch('api/generate', {
-            method: 'POST',
-            body: text,
-        })
-        .then((res) => res.json())
-        .then((data) => setFlashcards(data))
+        setLoading(true)
+        try {
+            const res = await fetch("api/generate", {
+                method: "POST",
+                body: text,
+            })
+            const data = await res.json()
+            setFlashcards(data)
+        } catch (err) {
+            console.error("Error generating flashcards:", err)
+        } finally {
+        setLoading(false)
+        }
     }
+
 
     const handleCardClick = (id) => {
         setFlipped((prev) => ({
@@ -166,6 +183,23 @@ export default function Generate(){
                     />
                     <Button 
                         variant="contained"
+                        sx={{ color:"white", backgroundColor:"#212121" }}
+                        onClick={handleSubmit}
+                        fullWidth
+                        disabled={loading}  // prevent double clicks
+                    >
+                        {loading ? (
+                            <>
+                                <CircularProgress size={20} sx={{ color: "white", mr: 1 }} />
+                                Generating...
+                            </>
+                        ) : (
+                            "Generate"
+                        )}
+                    </Button>
+
+                    {/* <Button 
+                        variant="contained"
                         sx={{ color:"white",
                             backgroundColor:"#212121"}}
                         onClick={handleSubmit}
@@ -173,7 +207,7 @@ export default function Generate(){
                     >   
                         {' '}
                         Generate
-                    </Button>
+                    </Button> */}
                 </Paper>
             </Box>
 
